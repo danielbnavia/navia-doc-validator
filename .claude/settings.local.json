@@ -13,7 +13,9 @@
       "Bash(powershell:*)",
       "Bash(git init:*)",
       "Bash(npx netlify-cli deploy:*)",
-      "Bash(npx netlify-cli:*)"
+      "Bash(npx netlify-cli:*)",
+      "Bash(netlify functions:create:*)",
+      "Bash(where netlify)"
     ],
     "deny": [],
     "ask": []

@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { init as initLD } from '@netlify/launchdarkly-server-sdk';
 import type { Context } from "@netlify/functions";
 
 const SYSTEM_PROMPT = `You are a logistics document validation specialist for Navia, a 3PL/freight forwarding company.
@@ -64,6 +65,21 @@ export default async (req: Request, context: Context) => {
   try {
     if (!process.env.ANTHROPIC_API_KEY) {
       throw new Error("ANTHROPIC_API_KEY not configured");
+    }
+
+    // Optional: LaunchDarkly feature flags
+    let enhancedValidationEnabled = false;
+    if (process.env.LAUNCHDARKLY_CLIENT_SIDE_ID) {
+      try {
+        const ldClient = initLD(process.env.LAUNCHDARKLY_CLIENT_SIDE_ID);
+        await ldClient.waitForInitialization();
+        const userContext = { kind: 'user', key: 'validator-user' };
+        enhancedValidationEnabled = await ldClient.variation('enableEnhancedValidation', userContext, false);
+        await ldClient.close();
+        console.log(`Enhanced validation: ${enhancedValidationEnabled}`);
+      } catch (ldError) {
+        console.warn("LaunchDarkly not available, using default settings:", ldError);
+      }
     }
 
     const formData = await req.formData();
