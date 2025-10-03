@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(test:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx vite:*)",
+      "Bash(node:*)",
+      "Bash(./node_modules/.bin/vite:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npm ci:*)",
+      "Bash(powershell:*)",
+      "Bash(git init:*)",
+      "Bash(npx netlify-cli deploy:*)",
+      "Bash(npx netlify-cli:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
