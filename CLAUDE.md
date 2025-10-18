@@ -53,7 +53,7 @@ User uploads PDF(s) → FileUpload component → FormData POST to /.netlify/func
 - Model: `claude-3-5-sonnet-20241022`
 - Max tokens: 4096
 - Uses `document` content type with base64 source
-- Strips markdown code blocks from response (lines 123-128)
+- Strips markdown code blocks from response in the response processing section of `validate-document.ts`
 
 **Response Format:**
 ```json
