@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Tech Stack:**
 - **Frontend:** React 18 + TypeScript + Tailwind CSS + Vite
 - **Backend:** Netlify Functions (serverless)
-- **AI:** Anthropic Claude API (claude-sonnet-4-20250514 model)
+- **AI:** Anthropic Claude API (claude-3-5-sonnet-20241022 model)
 - **Deployment:** Netlify
 
 ## Architecture
@@ -50,10 +50,10 @@ User uploads PDF(s) → FileUpload component → FormData POST to /.netlify/func
 - Enforced JSON output format (no markdown)
 
 **API Configuration** (validate-document.ts:91-114):
-- Model: `claude-sonnet-4-20250514`
+- Model: `claude-3-5-sonnet-20241022`
 - Max tokens: 4096
 - Uses `document` content type with base64 source
-- Strips markdown code blocks from response (lines 123-128)
+- Strips markdown code blocks from response in the response processing section of `validate-document.ts`
 
 **Response Format:**
 ```json
